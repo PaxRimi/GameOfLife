@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", function () {
     var boardParent = document.querySelector('.boardFlex');
     var glider = document.getElementById('glider');
     var capitan = document.getElementById('capitan');
+    var pentadecathlon = document.getElementById('pentadecathlon');
 
     function GameOfLife(boardWidth, boardHeight) {
         this.width = boardWidth;
@@ -222,6 +223,20 @@ window.addEventListener("DOMContentLoaded", function () {
             this.setCellState(11,20,'live');
             this.setCellState(12,20,'live');
         };
+        this.pantadecthlon = function () {
+          this.setCellState(9,4,'live');
+          this.setCellState(9,5,'live');
+          this.setCellState(8,6,'live');
+          this.setCellState(10,6,'live');
+          this.setCellState(9,7,'live');
+          this.setCellState(9,8,'live');
+          this.setCellState(9,9,'live');
+          this.setCellState(9,10,'live');
+          this.setCellState(8,11,'live');
+          this.setCellState(10,11,'live');
+          this.setCellState(9,12,'live');
+          this.setCellState(9,13,'live');
+        };
         this.computeCellNextState = function (x,y) {
             var neighbor =0;
             var cellLive = 0;
@@ -369,6 +384,19 @@ window.addEventListener("DOMContentLoaded", function () {
         newgame = new GameOfLife(21,21);
         newgame.createBoard();
         newgame.capShield();
+        start.addEventListener('click', newgame.startGame);
+        stop.addEventListener('click', newgame.stopGame);
+    });
+    pentadecathlon.addEventListener('click', function () {
+        if (window.newgame) {
+            start.removeEventListener('click', newgame.startGame);
+            stop.removeEventListener('click', newgame.stopGame);
+            delete window.newgame;
+        }
+        clearBoard();
+        newgame = new GameOfLife(18,18);
+        newgame.createBoard();
+        newgame.pantadecthlon();
         start.addEventListener('click', newgame.startGame);
         stop.addEventListener('click', newgame.stopGame);
     });
