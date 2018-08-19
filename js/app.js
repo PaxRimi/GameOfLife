@@ -6,6 +6,7 @@ window.addEventListener("DOMContentLoaded", function () {
     var glider = document.getElementById('glider');
     var capitan = document.getElementById('capitan');
     var pentadecathlon = document.getElementById('pentadecathlon');
+    var gliderGun = document.getElementById('gliderGun');
 
     function GameOfLife(boardWidth, boardHeight) {
         this.width = boardWidth;
@@ -237,6 +238,44 @@ window.addEventListener("DOMContentLoaded", function () {
           this.setCellState(9,12,'live');
           this.setCellState(9,13,'live');
         };
+        this.gliderGun = function () {
+          this.setCellState(25,1,'live');
+          this.setCellState(23,2,'live');
+          this.setCellState(25,2,'live');
+          this.setCellState(13,3,'live');
+          this.setCellState(14,3,'live');
+          this.setCellState(21,3,'live');
+          this.setCellState(22,3,'live');
+          this.setCellState(35,3,'live');
+          this.setCellState(36,3,'live');
+          this.setCellState(12,4,'live');
+          this.setCellState(16,4,'live');
+          this.setCellState(21,4,'live');
+          this.setCellState(22,4,'live');
+          this.setCellState(35,4,'live');
+          this.setCellState(36,4,'live');
+          this.setCellState(1,5,'live');
+          this.setCellState(2,5,'live');
+          this.setCellState(11,5,'live');
+          this.setCellState(17,5,'live');
+          this.setCellState(21,5,'live');
+          this.setCellState(22,5,'live');
+          this.setCellState(1,6,'live');
+          this.setCellState(2,6,'live');
+          this.setCellState(11,6,'live');
+          this.setCellState(15,6,'live');
+          this.setCellState(17,6,'live');
+          this.setCellState(18,6,'live');
+          this.setCellState(23,6,'live');
+          this.setCellState(25,6,'live');
+          this.setCellState(11,7,'live');
+          this.setCellState(17,7,'live');
+          this.setCellState(25,7,'live');
+          this.setCellState(12,8,'live');
+          this.setCellState(16,8,'live');
+          this.setCellState(13,9,'live');
+          this.setCellState(14,9,'live');
+        };
         this.computeCellNextState = function (x,y) {
             var neighbor =0;
             var cellLive = 0;
@@ -397,6 +436,19 @@ window.addEventListener("DOMContentLoaded", function () {
         newgame = new GameOfLife(18,18);
         newgame.createBoard();
         newgame.pantadecthlon();
+        start.addEventListener('click', newgame.startGame);
+        stop.addEventListener('click', newgame.stopGame);
+    });
+    gliderGun.addEventListener('click', function () {
+        if (window.newgame) {
+            start.removeEventListener('click', newgame.startGame);
+            stop.removeEventListener('click', newgame.stopGame);
+            delete window.newgame;
+        }
+        clearBoard();
+        newgame = new GameOfLife(38,38);
+        newgame.createBoard();
+        newgame.gliderGun();
         start.addEventListener('click', newgame.startGame);
         stop.addEventListener('click', newgame.stopGame);
     });
